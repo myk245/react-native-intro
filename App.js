@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState('');
+  const [courseGoals, setCourseGoals] = useState([]);
   
   const goalInputHandler = enteredText => {
     setEnteredGoal(enteredText)
   };
 
   const addGoalHandler = () => {
-    console.log(enteredGoal)
-  }
+    setCourseGoals(currentGoals => [...currentGoals, enteredGoal])
+  };
 
   return (
     <View style={styles.screen}>
@@ -27,9 +28,13 @@ export default function App() {
         />
       </View>
 
-      <View>
-
-      </View>
+      <ScrollView>
+        {courseGoals.map(goal => 
+          <View key={goal} style={styles.listItem}>
+            <Text>{goal}</Text>
+          </View>
+        )}
+      </ScrollView>
     </View>
   );
 }
@@ -48,5 +53,13 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     padding: 10
+  },
+  listItem: {
+    padding: 10,
+    margin: 10,
+    width: 200, 
+    backgroundColor: '#d1ede9',
+    borderColor: 'gray',
+    borderWidth: 1
   }
 });
