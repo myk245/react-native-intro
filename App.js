@@ -4,28 +4,30 @@ import { StyleSheet, View, FlatList} from 'react-native';
 import GoalItem from './Components/GoalItem';
 import GoalInput from './Components/GoalInput';
 
-export default function App() {
+const App = () => {
   const [courseGoals, setCourseGoals] = useState([]);
   
   const addGoalHandler = goalItem => {
-    setCourseGoals(currentGoals => [...currentGoals, {key: Math.random().toString(), value: goalItem}])
+    setCourseGoals(currentGoals => [...currentGoals, { key: Math.random().toString(), value: goalItem }])
   };
 
   return (
     <View style={styles.screen}>
-      <GoalInput onAddGoal={addGoalHandler}/>
+      <GoalInput onAddGoal={addGoalHandler} />
       <FlatList
         data={courseGoals}
-        renderItem={itemData => 
+        renderItem={itemData =>
           <GoalItem item={itemData.item.value} />
         }
       />
     </View>
   );
-}
+}; 
 
 const styles = StyleSheet.create({
   screen: {
     padding: 50
   }
 });
+
+export default App 
