@@ -8,7 +8,13 @@ const App = () => {
   const [courseGoals, setCourseGoals] = useState([]);
   
   const addGoalHandler = goalItem => {
-    setCourseGoals(currentGoals => [...currentGoals, { key: Math.random().toString(), value: goalItem }])
+    setCourseGoals(currentGoals => [...currentGoals, { id: Math.random().toString(), value: goalItem }])
+  };
+
+  const removeGoalHandler = goalId => {
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter(goal => goal.id !== goalId);
+    })
   };
 
   return (
@@ -17,7 +23,11 @@ const App = () => {
       <FlatList
         data={courseGoals}
         renderItem={itemData =>
-          <GoalItem item={itemData.item.value} />
+          <GoalItem
+            id={itemData.item.id}
+            item={itemData.item.value}
+            onDelete={removeGoalHandler}
+          />
         }
       />
     </View>
