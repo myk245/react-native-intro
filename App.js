@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList} from 'react-native';
 // custom components
 import GoalItem from './Components/GoalItem';
 import GoalInput from './Components/GoalInput';
