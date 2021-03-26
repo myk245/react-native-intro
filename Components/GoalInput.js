@@ -8,6 +8,12 @@ const GoalInput = props => {
       setEnteredGoal(enteredText)
    };
 
+   const addGoalHandler = () => {
+      props.onAddGoal(enteredGoal);
+      // reset goal input
+      setEnteredGoal('');
+   }
+
    return (
       <Modal visible={props.visible} animationType="slide">
          <View style={styles.inputContainer}>
@@ -18,8 +24,13 @@ const GoalInput = props => {
                value={enteredGoal}
             />
             <Button
+               title="CANCEL"
+               color="red"
+               onPress={props.onCancel}
+            />
+            <Button
                title="ADD"
-               onPress={() => props.onAddGoal(enteredGoal)}
+               onPress={addGoalHandler}
             />
          </View>
       </Modal>

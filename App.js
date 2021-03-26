@@ -20,10 +20,15 @@ const App = () => {
     })
   };
 
+  const cancelGoalAddHandler = () => {
+    // close modal
+    setAddMode(false);
+  }; 
+
   return (
     <View style={styles.screen}>
       <Button title="Add New Goal" onPress={() => setAddMode(true)}/>
-      <GoalInput visible={addMode} onAddGoal={addGoalHandler} />
+      <GoalInput visible={addMode} onAddGoal={addGoalHandler} onCancel={cancelGoalAddHandler} />
       <FlatList
         data={courseGoals}
         renderItem={itemData =>
