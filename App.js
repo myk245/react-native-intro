@@ -10,6 +10,11 @@ const App = () => {
   const [addMode, setAddMode] = useState(false);
   
   const addGoalHandler = goalItem => {
+    // handle empty user input
+    if (goalItem.length === 0) {
+      return; 
+    }
+
     setCourseGoals(currentGoals => [...currentGoals, { id: Math.random().toString(), value: goalItem }]);
     setAddMode(false); 
   };
